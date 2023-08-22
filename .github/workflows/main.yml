@@ -127,6 +127,11 @@ jobs:
       - build_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
       - build_gateway_and_push_to_docker_hub
+    # Так на 3-6 строках указано изначально, что тригером для всех действий
+    # будет именно push в ветку main. Или ты имел ввиду, что можно настроить 
+    # так, что например при push в любую ветку будут проходить тесты, а сборка, 
+    # push образов и deploy только при push в ветку main?
+    if: github.ref == 'refs/heads/main' 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
